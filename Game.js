@@ -57,8 +57,8 @@ function create() {
 }
 
 function createZone(x, y) {
-    var zone = this.add.rectangle(x, y, 45, 75, 0xffff00).setOrigin(0.5); // Fond jaune
-    this.matter.add.gameObject(zone, { isStatic: true, isSensor: true }); // Rendre la zone non collidante
+    var zone = this.add.rectangle(x, y, 45, 75, 0xffff00).setOrigin(0.5);
+    this.matter.add.gameObject(zone, { isStatic: true, isSensor: true });
     zones.push(zone);
 }
 
