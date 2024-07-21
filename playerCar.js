@@ -9,6 +9,7 @@ class PlayerCar {
         });
         this.sprite.setOrigin(0.5, 0.8);
         this.sprite.setAngle(90);
+        this.sprite.setDepth(9);
         this.speed = 0;
         this.maxSpeed = 2;
         this.minSpeed = -1;

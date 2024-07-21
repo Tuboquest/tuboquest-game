@@ -1,29 +1,14 @@
-class MainScene extends Phaser.Scene {
+class MainScene extends ParkingScene {
     constructor() {
         super({ key: 'MainScene' });
-        this.zones = [];
-        this.score = 0;
-    }
-
-    preload() {
-        this.load.image('car', './assets/cars/car_n_0.png');
-        this.load.image('car1', './assets/cars/car_n_1.png');
-        this.load.image('car2', './assets/cars/car_n_15.png');
-        this.load.image('car3', './assets/cars/car_n_16.png');
-        this.load.image('epi', './assets/parkings/parking-epi.svg');
-        this.load.image('battail', './assets/parkings/parking-battail.svg');
-        this.load.image('crenau', './assets/parkings/parking-crenau.svg');
-        this.load.image('zone', './assets/parkings/zone.png');
+        this.nextScene = 'EpiScene';
     }
 
     create() {
-        this.matter.world.setBounds().disableGravity();
-        this.cursors = this.input.keyboard.createCursorKeys();
+        this.createCommon();
 
         let background = this.add.sprite(500, 340, 'battail');
         background.setDisplaySize(background.width / 2, background.height / 2);
-
-        this.player = new PlayerCar(this, 100, 385, 'car');
 
         this.placeDecorCar(172, 150);
         this.placeDecorCar(400, 150);
@@ -38,45 +23,10 @@ class MainScene extends Phaser.Scene {
         this.createZone(980, 155);
 
         this.scoreText = this.add.text(850, 16, 'Score: 0', { fontSize: '32px', fill: '#ffffff' });
-
-        this.matter.world.on('collisionstart', (event, bodyA, bodyB) => {
-            if (bodyA.gameObject && bodyB.gameObject) {
-                if (bodyA.gameObject.isZone && bodyB.gameObject === this.player.sprite) {
-                    if (this.player.speed === 0) {
-                        this.score += 10;
-                        this.scoreText.setText('Score: ' + this.score);
-                        bodyA.gameObject.setPosition(-100, -100);
-                    }
-                } else if (bodyB.gameObject.isZone && bodyA.gameObject === this.player.sprite) {
-                    if (this.player.speed === 0) {
-                        this.score += 10;
-                        this.scoreText.setText('Score: ' + this.score);
-                        bodyB.gameObject.setPosition(-100, -100);
-                    }
-                } else {
-                    this.player.speed = 0;
-                    this.score -= 5;
-                    this.scoreText.setText('Score: ' + this.score);
-                }
-            }
-        });
-
-        // Rendre la voiture au-dessus des zones
-        this.player.sprite.setDepth(1);
     }
 
     update() {
-        this.player.update(this.cursors);
-
-        this.zones.forEach(zone => {
-            if (Phaser.Geom.Intersects.RectangleToRectangle(this.player.sprite.getBounds(), zone.getBounds())) {
-                if (this.player.speed === 0 && Phaser.Geom.Rectangle.ContainsRect(zone.getBounds(), this.player.sprite.getBounds())) {
-                    this.score += 10;
-                    this.scoreText.setText('Score: ' + this.score);
-                    zone.setPosition(-100, -100);
-                }
-            }
-        });
+        this.updateCommon()
     }
 
     createZone(x, y) {
@@ -98,6 +48,6 @@ class MainScene extends Phaser.Scene {
             height: 175
         });
         decorCar.setStatic(true);
-        decorCar.isObstacle = true; // Marquer les voitures décoratives comme obstacles
+        decorCar.isObstacle = true;
     }
 }

@@ -9,7 +9,7 @@ var config = {
             debug: true
         }
     },
-    scene: [BootScene, MainScene, CrenauScene, EipScene]
+    scene: [BootScene, MainScene, EpiScene, CrenauScene]
 };
 
 const game = new Phaser.Game(config);
