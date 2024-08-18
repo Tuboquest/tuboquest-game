@@ -4,6 +4,10 @@ class CrenauScene extends ParkingScene {
         this.nextScene = null;
     }
 
+    init(data) {
+        this.score = data.score || 0;
+    }
+
     create() {
         this.createCommon();
         let background = this.add.sprite(500, 340, 'crenau');

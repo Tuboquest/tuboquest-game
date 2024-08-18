@@ -21,8 +21,6 @@ class MainScene extends ParkingScene {
         this.createZone(287, 155);
         this.createZone(632, 525);
         this.createZone(980, 155);
-
-        this.scoreText = this.add.text(850, 16, 'Score: 0', { fontSize: '32px', fill: '#ffffff' });
     }
 
     update() {
@@ -34,7 +32,7 @@ class MainScene extends ParkingScene {
         zone.setDisplaySize(107, 203);
         this.zones.push(zone);
         zone.isZone = true;
-        zone.setDepth(0); // Mettre la zone derrière la voiture
+        zone.setDepth(0);
     }
 
     placeDecorCar(x, y) {

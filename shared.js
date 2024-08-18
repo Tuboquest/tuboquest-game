@@ -21,7 +21,7 @@ class ParkingScene extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
 
         this.player = new PlayerCar(this, 100, 385, 'car');
-        this.scoreText = this.add.text(850, 16, 'Score: 0', { fontSize: '32px', fill: '#ffffff' });
+        this.scoreText = this.add.text(850, 16, 'Score: ' + this.score, { fontSize: '32px', fill: '#ffffff' });
 
         this.matter.world.on('collisionstart', (event, bodyA, bodyB) => {
             if (bodyA.gameObject && bodyB.gameObject) {
@@ -53,7 +53,6 @@ class ParkingScene extends Phaser.Scene {
                     this.updateScore(10);
                     zone.setPosition(-100, -100);
                     this.zones = this.zones.filter(zone => zone.x !== -100 && zone.y !== -100);
-                    console.log(this.zones)
                     if (this.zones.length === 0) {
                         if (this.nextScene) {
                             this.scene.start(this.nextScene, { score: this.score });

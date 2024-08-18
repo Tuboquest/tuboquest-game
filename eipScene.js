@@ -4,6 +4,11 @@ class EpiScene extends ParkingScene {
         this.nextScene = 'CrenauScene';
     }
 
+    init(data) {
+        console.log(data)
+        this.score = data.score || 0;
+    }
+
     create() {
         this.createCommon();
         let background = this.add.sprite(500, 340, 'epi');
