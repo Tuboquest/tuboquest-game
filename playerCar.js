@@ -1,4 +1,5 @@
 class PlayerCar {
+    engineSound;
     constructor(scene, x, y, texture) {
         this.scene = scene;
         this.sprite = scene.matter.add.sprite(x, y, texture);
@@ -17,6 +18,7 @@ class PlayerCar {
         this.minSpeed = -1;
         this.rotationSpeed = 0.03;
         this.steeringDirection = 0;
+        this.engineSound = this.scene.sound.add('engine', {loop: true})
     }
 
     update(cursors) {
@@ -24,15 +26,12 @@ class PlayerCar {
         const steeringSpeed = 0.03;
         const returnSteeringSpeed = 0.01;
 
-        if (cursors.up.isDown) {
-            this.speed += 0.04;
-            if (this.speed > this.maxSpeed) {
-                this.speed = this.maxSpeed;
-            }
-        } else if (cursors.down.isDown) {
-            this.speed -= 0.04;
-            if (this.speed < this.minSpeed) {
-                this.speed = this.minSpeed;
+        if (cursors.up.isDown || cursors.down.isDown) {
+            this.speed += cursors.up.isDown ? 0.04 : -0.04;
+            this.speed = Phaser.Math.Clamp(this.speed, this.minSpeed, this.maxSpeed);
+
+            if (!this.engineSound.isPlaying) {
+                this.engineSound.play();
             }
         } else {
             if (this.speed > 0) {
@@ -41,6 +40,10 @@ class PlayerCar {
             } else if (this.speed < 0) {
                 this.speed += returnSpeed;
                 if (this.speed > 0) this.speed = 0;
+            }
+
+            if (this.speed === 0) {
+                this.engineSound.stop();
             }
         }
 
@@ -59,9 +62,7 @@ class PlayerCar {
         }
 
         this.steeringDirection = Phaser.Math.Clamp(this.steeringDirection, -1, 1);
-
         this.sprite.rotation += this.steeringDirection * this.rotationSpeed * (this.speed / this.maxSpeed);
-
         this.sprite.setVelocity(Math.sin(this.sprite.rotation) * this.speed, -Math.cos(this.sprite.rotation) * this.speed);
     }
 }

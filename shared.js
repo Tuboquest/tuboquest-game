@@ -14,14 +14,23 @@ class ParkingScene extends Phaser.Scene {
         this.load.image('epi', './assets/parkings/parking-epi.svg');
         this.load.image('battail', './assets/parkings/parking-battail.svg');
         this.load.image('crenau', './assets/parkings/parking-crenau.svg');
+        this.load.audio('hit', ['./assets/sounds/HitSound.ogg']);
+        this.load.audio('engine', ['./assets/sounds/engine_rev.ogg']);
+        this.load.audio('win', ['./assets/sounds/star.ogg']);
+        this.load.audio('loopInGame', ['./assets/sounds/ingame_FunkGameLoop.ogg']);
+
     }
 
     createCommon() {
         this.matter.world.setBounds().disableGravity();
         this.cursors = this.input.keyboard.createCursorKeys();
+        const collisionSound = this.sound.add('hit');
+        const winSound = this.sound.add('win');
+        const inGameLoop = this.sound.add('loopInGame', {loop: true});
 
         this.player = new PlayerCar(this, 100, 385, 'car');
         this.scoreText = this.add.text(850, 16, 'Score: ' + this.score, { fontSize: '32px', fill: '#ffffff' });
+        inGameLoop.play();
 
         this.matter.world.on('collisionstart', (event, bodyA, bodyB) => {
             if (bodyA.gameObject && bodyB.gameObject) {
@@ -29,7 +38,7 @@ class ParkingScene extends Phaser.Scene {
                     (bodyB.gameObject.isZone && bodyA.gameObject === this.player.sprite)) {
                     if (this.player.speed === 0) {
                         this.updateScore(10);
-                        console.log(this.zones)
+                        winSound.play();
                         if (bodyA.gameObject.isZone) {
                             bodyA.gameObject.setPosition(-100, -100);
                         } else {
@@ -39,9 +48,12 @@ class ParkingScene extends Phaser.Scene {
                 } else {
                     this.player.speed = 0;
                     this.updateScore(-5);
+                    collisionSound.play();
                 }
             }
         });
+
+        this.createMuteButton();
     }
 
     updateCommon() {
@@ -96,5 +108,20 @@ class ParkingScene extends Phaser.Scene {
         decorCar.setStatic(true);
         decorCar.setAngle(angle);
         decorCar.isObstacle = true;
+    }
+
+    createMuteButton() {
+        const muteButton = this.add.text(16, 16, 'Mute', { fontSize: '32px', fill: '#ffffff' })
+            .setInteractive()
+            .on('pointerdown', () => {
+                if (this.sound.mute) {
+                    this.sound.mute = false;
+                    muteButton.setText('Mute');
+                } else {
+                    this.sound.mute = true;
+                    muteButton.setText('Unmute');
+                }
+            });
+        muteButton.setScrollFactor(0); // Keeps the button in a fixed position
     }
 }
