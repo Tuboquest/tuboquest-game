@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr" xmlns="http://www.w3.org/1999/html">
+<html lang="fr" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -18,5 +18,31 @@
 </head>
 <body style="background-color: black">
     <h1>TUBO-QUEST PARKING</h1>
+<div class="panel">
+    <div class="instruction">
+        <h2>Controles</h2>
+        <ul>
+            <li><img src="./assets/controles/arrow-up.png" alt="avancer"> : avancer</li></br>
+            <li><img src="./assets/controles/arrow-down.png" alt="reculer"> : freiner/reculer</li></br>
+            <li><img src="./assets/controles/arrow-left.png" alt="gauche"> : tourner a gauche</li></br>
+            <li><img src="./assets/controles/arrow-right.png" alt="droite"> : tourner a droite</li>
+        </ul>
+        <h2>Regles</h2>
+        <ul>
+            <li>placer votre voiture sur les places jaune <img src="./assets/parkings/zone.png" alt="zones"></li></br>
+            <li>chaque place validé rapporte 10 points</li></br>
+            <li>une fois toutes les places d'une map validée vous passerez a la map suivante</li></br>
+            <li>validez toutes les places de toutes les map pour finir le jeu</li></br>
+            <li>chaque collision avec une autre voiture vous fera perdre 5 point</li>
+        </ul>
+    </div>
+    <div id="gameContainer"></div>
+    <div class="score">
+        <h2>Score</h2>
+        <ul class="scorBoard">
+
+        </ul>
+    </div>
+</div>
 </body>
 </html>

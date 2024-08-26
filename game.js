@@ -3,6 +3,7 @@ var config = {
     width: 1100,
     height: 640,
     backgroundColor: '#000000',
+    parent: 'gameContainer',
     physics: {
         default: 'matter',
         matter: {

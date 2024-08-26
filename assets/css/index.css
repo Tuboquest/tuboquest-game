@@ -10,3 +10,22 @@ canvas {
     margin-left: auto;
     margin-right: auto;
 }
+
+img{
+    width: 25px;
+}
+
+li{
+    color: white;
+    list-style: none;
+    display: flex;
+}
+
+.panel{
+    display: flex;
+    justify-content: space-between;
+}
+
+.instruction{
+    width: 10%;
+}
