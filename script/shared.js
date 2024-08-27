@@ -65,7 +65,11 @@ class ParkingScene extends Phaser.Scene {
                     zone.setPosition(-100, -100);
                     this.zones = this.zones.filter(zone => zone.x !== -100 && zone.y !== -100);
                     if (this.zones.length === 0) {
-                        this.scene.start('VictoryScene', { score: this.score });
+                        if (this.nextScene !== null){
+                            this.scene.start(this.nextScene, { score: this.score });
+                        } else {
+                            this.scene.start('VictoryScene', { score: this.score });
+                        }
                     }
                 }
             }
