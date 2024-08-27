@@ -5,6 +5,14 @@ h1{
     margin: 0 auto;
 }
 
+h2{
+    color: yellow;
+}
+
+li {
+    color: white;
+}
+
 canvas {
     display: block;
     margin-left: auto;
@@ -15,7 +23,7 @@ img{
     width: 25px;
 }
 
-li{
+p{
     color: white;
     list-style: none;
     display: flex;
@@ -26,6 +34,6 @@ li{
     justify-content: space-between;
 }
 
-.instruction{
+.instruction, .score{
     width: 10%;
 }

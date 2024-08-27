@@ -18,7 +18,6 @@ class ParkingScene extends Phaser.Scene {
         this.load.audio('engine', ['./assets/sounds/engine_rev.ogg']);
         this.load.audio('win', ['./assets/sounds/star.ogg']);
         this.load.audio('loopInGame', ['./assets/sounds/ingame_FunkGameLoop.ogg']);
-
     }
 
     createCommon() {
@@ -26,7 +25,7 @@ class ParkingScene extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
         const collisionSound = this.sound.add('hit');
         const winSound = this.sound.add('win');
-        const inGameLoop = this.sound.add('loopInGame', {loop: true});
+        const inGameLoop = this.sound.add('loopInGame', { loop: true });
 
         this.player = new PlayerCar(this, 100, 385, 'car');
         this.scoreText = this.add.text(850, 16, 'Score: ' + this.score, { fontSize: '32px', fill: '#ffffff' });
@@ -66,15 +65,7 @@ class ParkingScene extends Phaser.Scene {
                     zone.setPosition(-100, -100);
                     this.zones = this.zones.filter(zone => zone.x !== -100 && zone.y !== -100);
                     if (this.zones.length === 0) {
-                        if (this.nextScene) {
-                            this.scene.start(this.nextScene, { score: this.score });
-                        }else {
-                            const message = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, `Vous avez gagné !\nScore total: ${this.score}`, {
-                                fontSize: '64px',
-                                fill: '#ffff00'
-                            });
-                            message.setOrigin(0.5, 0.5);
-                        }
+                        this.scene.start('VictoryScene', { score: this.score });
                     }
                 }
             }
@@ -122,6 +113,6 @@ class ParkingScene extends Phaser.Scene {
                     muteButton.setText('Unmute');
                 }
             });
-        muteButton.setScrollFactor(0); // Keeps the button in a fixed position
+        muteButton.setScrollFactor(0);
     }
 }

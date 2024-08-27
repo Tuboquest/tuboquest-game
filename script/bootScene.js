@@ -40,6 +40,6 @@ class BootScene extends Phaser.Scene {
                     muteButton.setText('Unmute');
                 }
             });
-        muteButton.setScrollFactor(0); // Keeps the button in a fixed position
+        muteButton.setScrollFactor(0);
     }
 }

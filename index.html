@@ -8,40 +8,35 @@
     <title>Tubo-Quest-Game</title>
     <link href="./assets/css/index.css" rel="stylesheet">
     <script type="text/javascript" src="phaser.min.js"></script>
-    <script type="text/javascript" src="playerCar.js"></script>
-    <script type="text/javascript" src="shared.js"></script>
-    <script type="text/javascript" src="bootScene.js"></script>
-    <script type="text/javascript" src="mainScene.js"></script>
-    <script type="text/javascript" src="eipScene.js"></script>
-    <script type="text/javascript" src="crenauScene.js"></script>
-    <script type="text/javascript" src="game.js"></script>
+    <script type="text/javascript" src="script/playerCar.js"></script>
+    <script type="text/javascript" src="script/shared.js"></script>
+    <script type="text/javascript" src="script/bootScene.js"></script>
+    <script type="text/javascript" src="script/mainScene.js"></script>
+    <script type="text/javascript" src="script/eipScene.js"></script>
+    <script type="text/javascript" src="script/crenauScene.js"></script>
+    <script type="text/javascript" src="script/victoryScene.js"></script>
+    <script type="text/javascript" src="script/game.js"></script>
+    <script type="text/javascript" src="script/scoreBoard.js"></script>
 </head>
 <body style="background-color: black">
     <h1>TUBO-QUEST PARKING</h1>
 <div class="panel">
     <div class="instruction">
         <h2>Controles</h2>
-        <ul>
-            <li><img src="./assets/controles/arrow-up.png" alt="avancer"> : avancer</li></br>
-            <li><img src="./assets/controles/arrow-down.png" alt="reculer"> : freiner/reculer</li></br>
-            <li><img src="./assets/controles/arrow-left.png" alt="gauche"> : tourner a gauche</li></br>
-            <li><img src="./assets/controles/arrow-right.png" alt="droite"> : tourner a droite</li>
-        </ul>
+        <p><img src="./assets/controles/arrow-up.png" alt="avancer"> : avancer</p>
+        <p><img src="./assets/controles/arrow-down.png" alt="reculer"> : freiner/reculer</p>
+        <p><img src="./assets/controles/arrow-left.png" alt="gauche"> : tourner a gauche</p>
+        <p><img src="./assets/controles/arrow-right.png" alt="droite"> : tourner a droite</p>
         <h2>Regles</h2>
-        <ul>
-            <li>placer votre voiture sur les places jaune <img src="./assets/parkings/zone.png" alt="zones"></li></br>
-            <li>chaque place validé rapporte 10 points</li></br>
-            <li>une fois toutes les places d'une map validée vous passerez a la map suivante</li></br>
-            <li>validez toutes les places de toutes les map pour finir le jeu</li></br>
-            <li>chaque collision avec une autre voiture vous fera perdre 5 point</li>
-        </ul>
+        <p>Garez-vous sur les places jaunes (+10 points). <img src="./assets/parkings/zone.png" alt="zones"></p>
+        <p> Chaque collision vous fait perdre 5 points.</p>
+        <p>Validez toutes les places d'un niveau pour passer à la suivante.</p>
+        <p>Terminez toutes les cartes pour finir le jeu.</p>
     </div>
     <div id="gameContainer"></div>
     <div class="score">
-        <h2>Score</h2>
-        <ul class="scorBoard">
-
-        </ul>
+        <h2>Score Board</h2>
+        <ol id="scoreList"></ol>
     </div>
 </div>
 </body>

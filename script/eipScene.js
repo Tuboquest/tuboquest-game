@@ -5,7 +5,6 @@ class EpiScene extends ParkingScene {
     }
 
     init(data) {
-        console.log(data)
         this.score = data.score || 0;
     }
 
